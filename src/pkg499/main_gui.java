@@ -16,6 +16,7 @@ import javax.swing.JFrame;
  * @author Andrew
  */
 public class main_gui {
+  
 private static JFrame f;
 private static log_in jPanel1;
 private static person g;
