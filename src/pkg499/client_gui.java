@@ -131,12 +131,7 @@ public class client_gui extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            pkg499.client.main(user_name.getText(),password.getText());
-        } catch (IOException ex) {
-            Logger.getLogger(client_gui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void enter(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enter

@@ -5,11 +5,13 @@
  */
 package pkg499;
 
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -17,9 +19,11 @@ import javax.swing.JTextField;
  */
 public class log_in extends javax.swing.JPanel {
 
-    /**
-     * Creates new form loog_in
-     */
+Connection con = null;
+ResultSet rs = null;
+PreparedStatement pst = null;
+
+    
     public log_in() {
         initComponents();
         
@@ -39,7 +43,6 @@ public class log_in extends javax.swing.JPanel {
         username_field = new javax.swing.JTextField();
         password_field = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(300, 300));
@@ -56,13 +59,6 @@ public class log_in extends javax.swing.JPanel {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Change Server");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -89,7 +85,6 @@ public class log_in extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(password_field)
                             .addComponent(username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(72, 72, 72))
         );
@@ -106,33 +101,25 @@ public class log_in extends javax.swing.JPanel {
                     .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            pkg499.client.main(username_field.getText(),password_field.getText());
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(jButton1,pkg499.client.get_ip()+" is unavailble.");
-        }
+                try{
+                    con = DriverManager.getConnection("jdbc:mysql://75.137.244.17:5555/team2","team","1234");
+                    
+                            
+                } 
+                catch (SQLException ex) {
+        Logger.getLogger(log_in.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here;
-        //pkg499.main_gui.change_screen_ip();
-        pkg499.main_gui.change_screen_new();
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.out.println("cool");
-                //pkg499.main_gui.change_screen_ip();
+
 
         pkg499.main_gui.change_screen_new();
         
@@ -142,7 +129,6 @@ public class log_in extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
